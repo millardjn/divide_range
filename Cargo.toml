@@ -1,0 +1,7 @@
+[package]
+name = "divide_range"
+version = "0.1.0"
+authors = ["zza <millard.jn@gmail.com>"]
+
+[dependencies]
+num-traits = "0.2"
