@@ -3,6 +3,7 @@ name = "divide_range"
 version = "0.1.1"
 authors = ["zza <millard.jn@gmail.com>"]
 license = "MIT"
+repository = "https://github.com/millardjn/divide_range.git"
 description = "Split a range evenly into an iterator of smaller ranges"
 
 [dependencies]
