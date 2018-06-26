@@ -4,9 +4,25 @@ extern crate num_traits;
 use std::ops::Range;
 use num_traits::{Num, FromPrimitive};
 
+/// Split range into an iterator of smaller ranges
 
-
-trait RangeDivisions<T: Num + FromPrimitive + PartialOrd + Copy> {
+pub trait RangeDivisions<T: Num + FromPrimitive + PartialOrd + Copy> {
+	/// This splitting method minimises the difference between
+	/// the smallest and largest ranges in the output.
+	/// ```
+	/// extern crate divide_range;
+	/// use divide_range::RangeDivisions;
+	/// 
+	/// let range = 1..18;
+	/// let mut iter = range.divide_evenly_into(5);
+	///
+	/// assert_eq!(Some(1..4), iter.next());
+	/// assert_eq!(Some(4..7), iter.next());
+	/// assert_eq!(Some(7..10), iter.next());
+	/// assert_eq!(Some(10..14), iter.next());
+	/// assert_eq!(Some(14..18), iter.next());
+	/// assert_eq!(None, iter.next());
+	/// ```
 	fn divide_evenly_into(self, divisions: usize) -> Even<T>;
 
 	// fn divide_greedily_into(self, divisions: usize) -> Greedy<T>;
@@ -32,7 +48,7 @@ impl<T: Num + FromPrimitive + PartialOrd + Copy> RangeDivisions<T> for Range<T> 
 }
 
 
-struct Even<T: Num + FromPrimitive + PartialOrd + Copy> {
+pub struct Even<T: Num + FromPrimitive + PartialOrd + Copy> {
 	next_start: T,
 	next_end: T,
 	end: T,
@@ -63,7 +79,7 @@ impl<T: Num + FromPrimitive + PartialOrd + Copy> Iterator for Even<T> {
 }
 
 
-// struct Greedy<T: Num + PartialOrd + Copy> {
+// pub struct Greedy<T: Num + PartialOrd + Copy> {
 // 	start: T,
 // 	end: T,
 // 	chunk_size: T,
