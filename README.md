@@ -1,4 +1,4 @@
-# split_range
+# divide_range
 
 Split a range evenly into an iterator of smaller ranges.
 
